@@ -191,7 +191,16 @@ ul.subteams li {
 #primarynav ul li.current-menu-item,  #primarynav ul li.current-page-ancestor  {
 	border-bottom: 1px solid #fff;
 }
-
+#primarynav ul li ul li {
+	display: block;
+	width: 100%;
+	text-align: left;
+	border-bottom: 0;
+}
+#primarynav ul li ul.dropdown-menu {
+	padding: 0;
+}
+.dropdown-menu>.active>a {background-color: #fff;}
 
 /* HELPERS */
 

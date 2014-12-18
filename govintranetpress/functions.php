@@ -848,6 +848,10 @@ function my_custom_login_logo() {
 add_action('login_head', 'my_custom_login_logo');
 
 
+// *********** Bootstrap Walker for menu
+
+require_once('wp_bootstrap_navwalker.php');
+
 
 // add accesskeys to menus
 
