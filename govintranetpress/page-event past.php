@@ -1,9 +1,11 @@
 <?php
 /* Template name: Events (inc past) page */
-	$cdir=$_GET['cdir'];
-	$eventcat = $_GET['cat'];
+
+$cdir=$_GET['cdir'];
+$eventcat = $_GET['cat'];
 
 get_header(); 
+
 $etype = get_term_by('slug',$eventcat,'event_type');
 if ($etype) $etypename = $etype->name;
 ?>
@@ -51,13 +53,7 @@ if ($etype) $etypename = $etype->name;
 		
 		<?php
 		echo "<br>".$timetravel;							
-		$tdate= getdate();
-		$tdate = $tdate['year']."-".$tdate['mon']."-".$tdate['mday'];
-		$tday = date( 'd' , strtotime($tdate) );
-		$tmonth = date( 'm' , strtotime($tdate) );
-		$tyear= date( 'Y' , strtotime($tdate) );
-		$sdate=$tyear."-".$tmonth."-".$tday." 00:00";
-
+		$sdate = date('Y-m-d H:i');
 
 		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 		if ($cat_id!=''){ // show individual theme conferences

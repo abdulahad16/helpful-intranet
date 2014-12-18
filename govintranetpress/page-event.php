@@ -11,12 +11,7 @@ if ($etype) $etypename = $etype->name;
 
 $tzone = get_option('timezone_string');
 date_default_timezone_set($tzone);
-$tdate= getdate();
-$tdate = $tdate['year']."-".$tdate['mon']."-".$tdate['mday'];
-$tday = date( 'd' , strtotime($tdate) );
-$tmonth = date( 'm' , strtotime($tdate) );
-$tyear= date( 'Y' , strtotime($tdate) );
-$sdate=$tyear."-".$tmonth."-".$tday;
+$sdate = date('Y-m-d H:i');
 
 //CHANGE PAST EVENTS TO DRAFT STATUS
 global $wpdb;
@@ -51,15 +46,9 @@ $wpdb->query(
 			?>
 			</h1>
 
-		<?php the_content(); ?>
+			<?php the_content(); ?>
 			<?php						
-			$tdate= getdate();
-			$tdate = $tdate['year']."-".$tdate['mon']."-".$tdate['mday'];
-			$tday = date( 'd' , strtotime($tdate) );
-			$tmonth = date( 'm' , strtotime($tdate) );
-			$tyear= date( 'Y' , strtotime($tdate) );
-			$sdate=$tyear."-".$tmonth."-".$tday." 00:00";
-
+			$sdate = date('Y-m-d H:i');
 
 			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 			if ($cat_id!=''){ // show individual theme conferences
@@ -75,9 +64,9 @@ $wpdb->query(
 
 					'meta_query' => array(
 					       array(
-				           		'key' => 'event_start_date',
+				           		'key' => 'event_end_date',
 				        	   'value' => $sdate,
-				    	       'compare' => '>=',
+				    	       'compare' => '>',
 				    	       'type' => 'DATE' ) 
 			    	        ),   
 						    'orderby' => 'meta_value',
@@ -93,9 +82,9 @@ $wpdb->query(
 						'posts_per_page' => 10,
 					   'meta_query' => array(
 				       array(
-			           		'key' => 'event_start_date',
+			           		'key' => 'event_end_date',
 			        	   'value' => $sdate,
-			    	       'compare' => '>=',
+			    	       'compare' => '>',
 			    	       'type' => 'DATE' )
 			    	        ),   
 					    'orderby' => 'meta_value',
@@ -119,7 +108,7 @@ $wpdb->query(
 						if ( has_post_thumbnail( $post->ID ) ) {
 							the_post_thumbnail('thumbnail',"class=alignleft");
 						}	
-						echo "<div class='media-body'><h2><a href='" .get_permalink() . "'>" . get_the_title() . "</a></h2>";
+						echo "<div class='media-body'><h3><a href='" .get_permalink() . "'>" . get_the_title() . "</a></h3>";
 						$thisdate =  get_post_meta($post->ID,'event_start_date',true); //print_r($thisdate);
 						$thisyear = substr($thisdate[0], 0, 4); 
 						$thismonth = substr($thisdate[0], 4, 2); 
