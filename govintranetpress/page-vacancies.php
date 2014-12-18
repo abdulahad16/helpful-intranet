@@ -5,18 +5,11 @@ get_header();
 
 $tzone = get_option('timezone_string');
 date_default_timezone_set($tzone);
-$tdate= getdate(); 
-$tday = date( 'd' , ($tdate[0]) );
-$tmonth = date( 'm' , ($tdate[0]) );
-$tyear= date( 'Y' , ($tdate[0]) ); 
-$thour= date( 'G' , ($tdate[0]) ); 
-$tmin= date( 'i' , ($tdate[0]) ); 
-$sdate = $tyear."-".$tmonth."-".$tday." ".$thour.":".$tmin;
-
+$sdate = date('Y-m-d H:i');
 
 //CHANGE CLOSED VACANCIES TO DRAFT STATUS
 $wpdb->query(
-	"update wp_posts, wp_postmeta set wp_posts.post_status='draft' where wp_postmeta.meta_key='closing_date' and wp_postmeta.meta_value < '".$sdate."' and wp_postmeta.post_id = wp_posts.id and wp_posts.post_status='publish';"
+	"update $wpdb->posts, $wpdb->postmeta set $wpdb->posts.post_status='draft' where $wpdb->postmeta.meta_key='closing_date' and $wpdb->postmeta.meta_value < '".$sdate."' and $wpdb->postmeta.post_id = $wpdb->posts.id and $wpdb->posts.post_status='publish';"
 	);
 
 if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
@@ -121,7 +114,7 @@ jQuery("#sbc-s").focus();
 									array(
 										'key' => 'closing_date',
 										'value' => $sdate,
-										'compare' => '>='
+										'compare' => '>'
 									),
 									array(
 										'key' => 'resourcing_cycle',
@@ -144,7 +137,7 @@ jQuery("#sbc-s").focus();
 									array(
 										'key' => 'closing_date',
 										'value' => $sdate,
-										'compare' => '>='
+										'compare' => '>'
 									),
 									array(
 										'key' => 'resourcing_cycle',
@@ -223,7 +216,7 @@ jQuery("#sbc-s").focus();
 										       array(
 										           'key' => 'closing_date',
 										           'value' => $sdate,
-										           'compare' => '>=',
+										           'compare' => '>',
 										           
 										       ),
 									       )
@@ -242,7 +235,7 @@ jQuery("#sbc-s").focus();
 											       array(
 											           'key' => 'closing_date',
 											           'value' => $sdate,
-											           'compare' => '>=',
+											           'compare' => '>',
 											           
 											       ),
 										       )
