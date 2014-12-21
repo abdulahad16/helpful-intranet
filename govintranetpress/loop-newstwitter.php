@@ -35,17 +35,17 @@ if ($k==1 && $paged<2){
 	echo "<div class='media-body'>";
 	
 		echo "<div><p>";
-			   $thisdate= $post->post_date;
-			   $thisdate=date("j M Y",strtotime($thisdate));
-			   echo "<span class='listglyph'><i class='glyphicon glyphicon-calendar'></i> ".$thisdate."</span> ";
-
-	$post_cat = get_the_category();		
-				foreach($post_cat as $cat){
-			if ($cat->name != 'Uncategorized' ){
-				echo "<span class='listglyph'><span class='glyphicon glyphicon-stop gb".$cat->term_id."'></span>&nbsp;".$cat->name;
-			echo "</span>&nbsp;&nbsp;";
+		   $thisdate= $post->post_date;
+		   $thisdate=date("j M Y",strtotime($thisdate));
+		   echo "<span class='listglyph'><i class='glyphicon glyphicon-calendar'></i> ".$thisdate."</span> ";
+	
+		   $post_cat = get_the_category();		
+			foreach($post_cat as $cat){
+				if ($cat->name != 'Uncategorized' ){
+					echo "<span class='listglyph'><span class='glyphicon glyphicon-stop gb".$cat->term_id."'></span>&nbsp;".$cat->name;
+					echo "</span>&nbsp;&nbsp;";
+				}
 			}
-		}
 
 		echo "</p></div>";
 

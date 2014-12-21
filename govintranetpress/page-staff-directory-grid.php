@@ -96,9 +96,9 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 					
 					<?php
 					if ($sort == 'last'){
-						$q = "select user_id, meta_value as name from wp_usermeta where meta_key = 'last_name' and ucase(left(meta_value,1)) = '".strtoupper($_REQUEST['show'])."' order by meta_value asc";
+						$q = "select user_id, meta_value as name from $wpdb->usermeta where meta_key = 'last_name' and ucase(left(meta_value,1)) = '".strtoupper($_REQUEST['show'])."' order by meta_value asc";
 					} elseif ($sort == "first"){
-						$q = "select user_id, meta_value as name from wp_usermeta where meta_key = 'first_name' and ucase(left(meta_value,1)) = '".strtoupper($_REQUEST['show'])."' order by meta_value asc";
+						$q = "select user_id, meta_value as name from $wpdb->usermeta where meta_key = 'first_name' and ucase(left(meta_value,1)) = '".strtoupper($_REQUEST['show'])."' order by meta_value asc";
 					}					
 					$userq = $wpdb->get_results($q,ARRAY_A);
 					$html="<div class='col-lg-12 col-md-12 col-sm-12'>";
