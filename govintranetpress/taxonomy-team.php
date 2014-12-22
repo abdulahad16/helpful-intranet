@@ -121,7 +121,7 @@ jQuery("#s2").focus();
 			} 
 			$chevron=1;
  			
-	 		$q = "select user_id from wp_usermeta join wp_terms on wp_terms.term_id = wp_usermeta.meta_value where user_id in (select user_id from wp_usermeta as a where a.meta_key = 'user_team' and a.meta_value = ".$tq." ) and meta_key = 'user_grade' ;
+	 		$q = "select user_id from $wpdb->usermeta join $wpdb->terms on $wpdb->terms.term_id = $wpdb->usermeta.meta_value where user_id in (select user_id from $wpdb->usermeta as a where a.meta_key = 'user_team' and a.meta_value = ".$tq." ) and meta_key = 'user_grade' ;
  "; 
  			$user_query = $wpdb ->get_results($q);
  			$counter=0;
@@ -236,9 +236,9 @@ echo "<div class='col-lg-12 col-md-12 col-sm-12'>";
 //*** find ungraded staff
 
 if ($showothers){
-	$q = "select distinct t1.user_id from wp_usermeta as t1
-	left outer join wp_terms on wp_terms.term_id = t1.meta_value 
-	WHERE t1.user_id in (select a.user_id from wp_usermeta as a where a.meta_key = 'user_team' and a.meta_value = ".$newteam->term_id." ) ";
+	$q = "select distinct t1.user_id from $wpdb->usermeta as t1
+	left outer join $wpdb->terms on $wpdb->terms.term_id = t1.meta_value 
+	WHERE t1.user_id in (select a.user_id from $wpdb->usermeta as a where a.meta_key = 'user_team' and a.meta_value = ".$newteam->term_id." ) ";
 		
 	 $user_query = $wpdb ->get_results($q);
 
