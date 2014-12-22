@@ -21,7 +21,7 @@ class htAboutThisPage extends WP_Widget {
         $show_author = ($instance['show_author']);
 	        
 						$showabout = false;
-						if ( is_single() && !singular(array('forum','reply','topic')) ) { 
+						if ( is_single() && !is_singular(array('forum','reply','topic')) ) { 
 						$showabout = true; }
 						if ( is_page('about') ) { 
 						$showabout = true; }
